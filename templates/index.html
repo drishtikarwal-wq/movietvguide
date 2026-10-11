@@ -1,0 +1,110 @@
+
+{% extends "base.html" %}
+
+{% block main %}
+
+<!-- ===== HOMEPAGE INTRODUCTION ===== -->
+
+<section class="home-container">
+    <p class="home-eyebrow">YOUR PERSONAL ENTERTAINMENT GUIDE</p>
+
+    <h1>MOVIE &amp; TV SHOW GUIDE</h1>
+
+    <p class="home-description">
+        Discover your next favourite. Explore movies and TV shows
+        by genre, find what's available on your favourite platforms,
+        and browse our complete collection.
+    </p>
+</section>
+
+
+<!-- ===== BROWSE BY GENRE ===== -->
+
+<section class="home-browse">
+    <div class="section-heading">
+        <div>
+            <p class="section-eyebrow">FIND YOUR MOOD</p>
+            <h2>Browse by Genre</h2>
+        </div>
+
+        <a class="view-all" href="/genre">View all genres →</a>
+    </div>
+
+    <div class="category-bubbles">
+        {% for genre in genres %}
+        <a class="category-bubble"
+           href="{{ url_for('genre', genre=genre) }}">
+            {{ genre }}
+        </a>
+        {% endfor %}
+    </div>
+</section>
+
+
+<!-- ===== BROWSE BY PLATFORM ===== -->
+
+<section class="home-browse">
+    <div class="section-heading">
+        <div>
+            <p class="section-eyebrow">WHERE TO WATCH</p>
+            <h2>Browse by Platform</h2>
+        </div>
+
+        <a class="view-all" href="/platform">View all platforms →</a>
+    </div>
+
+    <div class="category-bubbles">
+        {% for platform in platforms %}
+        <a class="category-bubble"
+           href="{{ url_for('platform', platform=platform) }}">
+            {{ platform }}
+        </a>
+        {% endfor %}
+    </div>
+</section>
+
+
+<!-- ===== COMPLETE MOVIE AND TV SHOW LIST ===== -->
+
+<section class="home-browse home-collection">
+    <div class="section-heading">
+        <div>
+            <p class="section-eyebrow">EXPLORE THE COLLECTION</p>
+            <h2>All Movies &amp; TV Shows</h2>
+        </div>
+    </div>
+
+    <div class="collection-table-wrapper">
+        <table class="home-movie-table">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Type</th>
+                    <th>Genre</th>
+                    <th>Platform</th>
+                    <th>Runtime</th>
+                    <th>Rating</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for row in movies %}
+                <tr>
+                    <td><strong>{{ row.title }}</strong></td>
+                    <td>{{ row.type }}</td>
+                    <td>{{ row.genre }}</td>
+                    <td>{{ row.platform }}</td>
+                    <td>{{ row.runtime_mins }} min</td>
+                    <td>⭐ {{ row.rating }}</td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="6">No titles found.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+
+{% endblock %}

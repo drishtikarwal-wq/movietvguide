@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block main %}
+<div class="platform-section">
+    <h2>Movies & TV Shows by Platform</h2>
+
+    <input
+        type="text"
+        id="platformSearch"
+        placeholder="Search by platform..."
+    >
+
+    <table id="platformTable" class="styled-table platform-table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Platform</th>
+                <th>Type</th>
+                <th>Genre</th>
+                <th>Runtime</th>
+                <th>Rating</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for row in movies %}
+            <tr>
+                <td>{{ row.title }}</td>
+                <td><strong>{{ row.platform }}</strong></td>
+                <td>{{ row.type }}</td>
+                <td>{{ row.genre }}</td>
+                <td>{{ row.runtime_mins }}</td>
+                <td>⭐ {{ row.rating }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

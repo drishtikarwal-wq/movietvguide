@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block main %}
+<div class="genre-section">
+    <h2>Movies & TV Shows by Genre</h2>
+
+    <input
+        type="text"
+        id="genreSearch"
+        placeholder="Search by genre..."
+    >
+
+    <table id="genreTable" class="styled-table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Type</th>
+                <th>Genre</th>
+                <th>Platform</th>
+                <th>Runtime</th>
+                <th>Rating</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for row in movies %}
+            <tr>
+                <td>{{ row.title }}</td>
+                <td>{{ row.type }}</td>
+                <td><strong>{{ row.genre }}</strong></td>
+                <td>{{ row.platform }}</td>
+                <td>{{ row.runtime_mins }}</td>
+                <td>⭐ {{ row.rating }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
